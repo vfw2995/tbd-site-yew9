@@ -1,0 +1,33 @@
+kind = "web"
+previewPath = "/amanda-creter-mortgage/"
+title = "TBD | Home Lending"
+version = "1.0.0"
+id = "artifacts/amanda-creter-mortgage"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/amanda-creter-mortgage/" ]
+domains = [ "creterhomelending.com", "www.creterhomelending.com", "creterpnw.com", "www.creterpnw.com" ]
+localPort = 19010
+
+[services.development]
+run = "pnpm --filter @workspace/amanda-creter-mortgage run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/amanda-creter-mortgage", "run", "build:prod" ]
+
+[services.production.run]
+args = [ "node", "artifacts/amanda-creter-mortgage/server.mjs" ]
+
+[services.production.run.env]
+PORT = "19010"
+NODE_ENV = "production"
+
+[services.env]
+PORT = "19010"
+BASE_PATH = "/amanda-creter-mortgage/"
